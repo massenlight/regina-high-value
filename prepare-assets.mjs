@@ -3,7 +3,7 @@ import {join,extname,resolve} from 'node:path';
 import {createHash} from 'node:crypto';
 const edition=process.argv[3]||'regina-atelier';
 if(!['regina-atelier','regina-editorial'].includes(edition))throw Error('Unknown edition');
-const dir=resolve(import.meta.dirname,'../../04_交付與輸出',edition),files={};
+const dir=process.env.REGINA_OUTPUT_DIR?resolve(import.meta.dirname,process.env.REGINA_OUTPUT_DIR):resolve(import.meta.dirname,'../../04_交付與輸出',edition),files={};
 function walk(folder,prefix=''){for(const e of readdirSync(folder,{withFileTypes:true})){if(e.name.startsWith('.'))continue;const name=prefix+'/'+e.name;if(e.isDirectory())walk(join(folder,e.name),name);else{const bytes=readFileSync(join(folder,e.name));files[name]={hash:createHash('md5').update(bytes).update(extname(e.name)).digest('hex'),size:bytes.length};}}}
 walk(dir);
 if(process.argv[2]==='manifest')process.stdout.write(JSON.stringify(files));

@@ -1,4 +1,27 @@
 /* First edition: aligned source layers and content-first phone layout. */
+/* Portrait-first: restrained geometry and one clear course format. */
+.portrait-first.hero.hero-parallax{padding:0;min-height:0;height:min(680px,54vw);display:block}
+.portrait-first .atelier-halo{display:none}
+.portrait-first .atelier-portrait{position:relative;inset:auto;margin:0 auto;width:min(1180px,100%);height:100%;aspect-ratio:auto;overflow:hidden}
+.portrait-first .atelier-portrait img{position:absolute;inset:auto 0 0 auto;left:auto;width:62%;height:100%;object-fit:contain;object-position:center bottom}
+.portrait-first .portrait-course{left:7%;top:24%;width:43%;text-shadow:none}
+.portrait-first .portrait-course h1{font-family:var(--serif);font-size:clamp(32px,4.5vw,60px);font-weight:500;line-height:1.55;letter-spacing:.025em;margin:14px 0}
+.portrait-first .portrait-course h1 strong{font-weight:500;color:#ebc991}
+.portrait-first .portrait-course .portrait-format{margin-top:23px;font:14px/1.8 Arial,'Noto Sans TC',sans-serif;letter-spacing:.04em;color:#f3e6d7}
+body.atelier .button,body.atelier .nav-cta,body.atelier .line-join-button{border-radius:4px;box-shadow:none;background-image:none}
+body.atelier .button:hover{box-shadow:none}
+body.atelier .button.primary{background:#e6c28e;color:#30212c;border-color:#e6c28e}
+body.atelier .mobile-bar{border-radius:0}
+@media(max-width:760px){
+ .portrait-first.hero.hero-parallax{padding:0;height:auto;min-height:0}
+ .portrait-first .atelier-portrait{height:440px;width:100%;margin:0;aspect-ratio:auto}
+ .portrait-first .atelier-portrait img{position:absolute;inset:auto -9% 0 auto;width:78%;height:100%;max-height:100%;object-fit:contain;object-position:center bottom}
+ .portrait-first .portrait-course{left:6%;top:22%;width:51%}
+ .portrait-first .portrait-course h1{font-size:clamp(25px,6.5vw,38px);line-height:1.6}
+ .portrait-first .portrait-course .portrait-format{font-size:12px;margin-top:20px;line-height:1.8}
+ .portrait-first .portrait-course>span{font-size:8px}
+ .portrait-first .portrait-course>p{font-size:12px}
+}
 .atelier-stage{height:auto;max-height:none;aspect-ratio:1672/941}
 .atelier-stage .hero-scene-plane{inset:0;width:100%;height:100%;min-width:0;transform:none}
 .atelier-stage .scene-audience,.atelier-stage .scene-speaker{inset:0 auto auto 0;width:100%;height:auto;max-height:none;object-fit:initial;transform:none}

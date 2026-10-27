@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
-const output = path.resolve(root, '../../04_交付與輸出/regina-atelier');
+const output = path.resolve(root, process.env.REGINA_OUTPUT_DIR || '../../04_交付與輸出/regina-atelier');
 await mkdir(output, { recursive: true });
 await cp(path.join(root, 'dist'), output, { recursive: true });
 let html = await readFile(path.join(root, 'dist/index.html'), 'utf8');
@@ -33,6 +33,19 @@ html = html.replace('跟著 Regina，用兩天為下一階段的成長打下基�
 const enrollmentCard = await readFile(path.join(root, 'webinar-form.html'), 'utf8');
 html = html.replace(/<article class="enroll-card">.*?<\/article>/s, enrollmentCard.trim());
 html = html.replace('</body>', '<script src="webinar-preview.js" defer></script></body>');
+// Portrait-first edition: remove the superseded copy panel, including its CTAs/facts.
+html = html.replace(/<div class="hero-copy">[\s\S]*?<\/section>/, '</section>');
+html = html.replace('class="hero hero-parallax"', 'class="hero hero-parallax portrait-first"');
+html = html.replace('<h2>高價值客戶<br><strong>變現業務力</strong></h2>', '<h1>高價值客戶<br><strong>變現業務力</strong></h1>');
+html = html.replace('<p>高若家 Regina</p></div>', '<p>高若家 Regina</p><p class="portrait-format">一天實體課程<br>＋ 完整線上課程</p></div>');
+html = html.replaceAll('兩天實體課程', '一天實體課程＋完整線上課程');
+html = html.replaceAll('用兩天，為接下來的每一步，建立更清楚的方法。', '一天實體課程集中演練，搭配完整線上課程反覆學習，把成交方法帶回每一次客戶對話。');
+html = html.replace('再忙一年，<br>就能擺脫現在的困局嗎？', '收入要再往上，<br>先把成交方法做對。');
+html = html.replace('如果方法沒有改變，忙碌可能只是在重複同一種消耗。', '從找到對的客戶、說清楚方案價值，到經營再次成交與轉介紹，讓每一份努力更有機會累積成收入。');
+html = html.replace('<span>重新定位自己</span>', '<span>找到高價值客戶</span>');
+html = html.replace('<span>讓專業被看見</span>', '<span>提高成交品質</span>');
+html = html.replace('<span>拿回人生選擇權</span>', '<span>累積收入成長</span>');
+html = html.replace(/<span aria-hidden="true">↗<\/span>/g, '').replaceAll('查看課程 ↗', '查看課程');
 await writeFile(path.join(output, 'index.html'), html);
 for (const name of ['atelier.css', 'atelier.js', 'atelier-results.js', 'photo-safe.css', 'atelier-refinements.css', 'webinar-preview.js']) await cp(path.join(root, name), path.join(output, name));
 console.log(output);
