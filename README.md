@@ -8,6 +8,8 @@
 - `dist/` 是原 GitHub Pages 版本；根目錄 `atelier*.css/js`、`photo-safe.css`、`webinar-form.html`、`webinar-preview.js` 與 `build-atelier.mjs` 是 Cloudflare 版本的來源。
 - 執行 `node build-atelier.mjs` 產生 `../../04_交付與輸出/regina-atelier/`。獨立 checkout 也使用此相對位置；請在可寫的專案資料夾執行。`python3 check-preservation.py` 檢查原文、圖片與連結保留。
 - `build-editorial.mjs` 是另一個敘事預覽版本，不是目前選定的主版本。
+- 2026-10-28：目前主版本改為講師照片開場，課程形式為一天實體課程＋完整線上課程；舊版首屏已移除。歷史學員心得原文保留。
+- 可用 `REGINA_OUTPUT_DIR=.build/atelier node build-atelier.mjs` 在 repo 內乾淨建置；上傳 manifest／assets 時使用相同 `REGINA_OUTPUT_DIR`。舊 `check-preservation.py` 對應9月舊版文案，不適用新版首屏刪除；新版以瀏覽器檢查內容、圖片、手機排版與表單流程。
 - 此版本報名表是介面預覽，實際報名／LINE 串接需另行驗證。
 
 ## 後續編輯規則
