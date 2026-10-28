@@ -132,3 +132,9 @@ body.atelier .mobile-bar{border-radius:0}
  .mobile-bar .webinar-cta{width:100%;justify-content:center;font-size:16px;font-weight:600;gap:18px}
  .mobile-bar strong{font-size:20px}
 }
+
+#webinar-form .webinar-session,#webinar-form .webinar-consent{display:flex;align-items:center;gap:12px;line-height:1.7}
+#webinar-form .webinar-session{border:1px solid #c9b39d;padding:14px;margin-bottom:10px;cursor:pointer}
+#webinar-form .webinar-session:has(input:checked){background:#ebddc8;border-color:#9d754a}
+#webinar-form input[type=radio],#webinar-form input[type=checkbox]{width:20px;height:20px;flex:0 0 20px;margin:0;padding:0;accent-color:#795538}
+#webinar-form .webinar-consent[hidden]{display:none}
