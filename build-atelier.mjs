@@ -37,7 +37,6 @@ html = html.replace('</body>', '<script src="webinar-preview.js" defer></script>
 html = html.replace(/<div class="hero-copy">[\s\S]*?<\/section>/, '</section>');
 html = html.replace('class="hero hero-parallax"', 'class="hero hero-parallax portrait-first"');
 html = html.replace('<h2>高價值客戶<br><strong>變現業務力</strong></h2>', '<h1>高價值客戶<br><strong>變現業務力</strong></h1>');
-html = html.replace('<p>高若家 Regina</p></div>', '<p>高若家 Regina</p><p class="portrait-format">一天實體課程<br>＋ 完整線上課程</p></div>');
 html = html.replaceAll('兩天實體課程', '一天實體課程＋完整線上課程');
 html = html.replaceAll('用兩天，為接下來的每一步，建立更清楚的方法。', '一天實體課程集中演練，搭配完整線上課程反覆學習，把成交方法帶回每一次客戶對話。');
 html = html.replace('再忙一年，<br>就能擺脫現在的困局嗎？', '收入要再往上，<br>先把成交方法做對。');

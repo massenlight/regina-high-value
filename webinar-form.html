@@ -1,30 +1,20 @@
 <article class="enroll-card webinar-card" aria-labelledby="webinar-heading">
   <p class="eyebrow">REGINA · 線上說明會</p>
   <h3 id="webinar-heading">報名線上說明會</h3>
-  <p class="webinar-intro">高價值客戶變現業務力<br>先留下資料，加入 LINE 後再選擇適合你的場次。</p>
+  <p class="webinar-intro">選擇適合你的時間，報名後前往官方 LINE。<br>不需填寫姓名、Email 或電話。</p>
   <ol class="webinar-flow" aria-label="說明會報名順序">
-    <li aria-current="step"><span>01</span>填寫資料</li>
+    <li aria-current="step"><span>01</span>選擇日期</li>
     <li><span>02</span>加入 LINE</li>
-    <li><span>03</span>選擇日期</li>
+    <li><span>03</span>接收提醒</li>
   </ol>
-  <p id="webinar-availability" class="webinar-availability" role="status">介面預覽：資料不會送出，LINE 將於之後串接。</p>
-  <form id="webinar-form" aria-describedby="webinar-availability" onsubmit="return false">
+  <form id="webinar-form" aria-describedby="webinar-availability">
     <fieldset>
-      <legend class="sr-only">說明會聯絡資料</legend>
-      <label for="webinar-name">姓名<input id="webinar-name" name="name" type="text" autocomplete="name" maxlength="80" placeholder="請填寫姓名" required></label>
-      <label for="webinar-email">Email<input id="webinar-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required></label>
-      <label for="webinar-phone">電話<input id="webinar-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="請填寫聯絡電話" required></label>
-      <p class="webinar-privacy">資料僅用於本次說明會報名、場次聯繫與提醒。</p>
-      <button class="button primary webinar-submit" type="submit">送出資料，前往 LINE <span aria-hidden="true">↗</span></button>
+      <legend>選擇說明會日期</legend>
+      <p class="webinar-privacy">以下時間皆為台灣時間。</p>
+      <div id="webinar-sessions"></div>
+      <p id="webinar-availability" class="webinar-availability" role="status">場次即將公布，目前尚未開放報名。</p>
+      <button class="button primary webinar-submit" type="submit" disabled>確認場次，前往 LINE</button>
     </fieldset>
   </form>
-  <div id="webinar-line-preview" class="webinar-line-preview" hidden tabindex="-1" aria-labelledby="line-step-heading">
-    <span class="line-step-label">STEP 02 · 加入 LINE</span>
-    <h4 id="line-step-heading">下一步，加入官方 LINE</h4>
-    <p>加入後，再選擇你想參加的說明會日期。後續場次資訊與提醒，也會透過 LINE 聯繫你。</p>
-    <button class="button line-join-button" type="button" disabled>加入官方 LINE <span aria-hidden="true">↗</span></button>
-    <p class="line-preview-note">這是流程預覽，尚未送出或儲存資料。LINE 按鈕將於串接後開放。</p>
-    <button class="webinar-back" type="button">← 返回修改資料</button>
-  </div>
-  <p class="webinar-next">加入 LINE 後，才會進入選擇說明會日期的頁面；這一步不用先選日期。</p>
+  <p class="webinar-next">開放報名後，請完成 LINE 登入與加入好友，讓系統確認你的場次並傳送提醒。</p>
 </article>
