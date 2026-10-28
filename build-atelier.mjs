@@ -44,7 +44,7 @@ html = html.replace('如果方法沒有改變，忙碌可能只是在重複同�
 html = html.replace('<span>重新定位自己</span>', '<span>找到高價值客戶</span>');
 html = html.replace('<span>讓專業被看見</span>', '<span>提高成交品質</span>');
 html = html.replace('<span>拿回人生選擇權</span>', '<span>累積收入成長</span>');
-html = html.replace(/<span aria-hidden="true">↗<\/span>/g, '').replaceAll('查看課程 ↗', '報名免費講座');
+html = html.replace(/<span aria-hidden="true">↗<\/span>/g, '').replace(/查看課程(?:\s*↗)?/g, '報名免費講座');
 await writeFile(path.join(output, 'index.html'), html);
 for (const name of ['atelier.css', 'atelier.js', 'atelier-results.js', 'photo-safe.css', 'atelier-refinements.css', 'webinar-preview.js']) await cp(path.join(root, name), path.join(output, name));
 console.log(output);
