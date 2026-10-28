@@ -21,7 +21,6 @@
       text.textContent=new Intl.DateTimeFormat('zh-TW',{timeZone:'Asia/Taipei',month:'long',day:'numeric',weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).format(new Date(session.startsAt));
       label.className='webinar-session';label.append(input,text);container.append(label);
     }
-    form.querySelector('.webinar-consent').hidden=false;
     status.textContent='選擇場次後，前往 LINE 完成報名。';submit.disabled=false;
   }).catch(() => {status.textContent='暫時無法載入場次，請重新整理後再試。';});
   form.addEventListener('submit',async event => {
@@ -29,7 +28,7 @@
     status.textContent='正在保留你選擇的場次，準備前往 LINE…';
     try {
       const query=new URLSearchParams(location.search),formData=new FormData(form);
-      const data=await request({action:'pre-register',sessionId:formData.get('sessionId'),consent:formData.get('consent')==='on',sourceSlug:'regina-atelier',utmSource:query.get('utm_source')||'',utmMedium:query.get('utm_medium')||'',utmCampaign:query.get('utm_campaign')||'',utmContent:query.get('utm_content')||'',utmTerm:query.get('utm_term')||'',fbclid:query.get('fbclid')||''});
+      const data=await request({action:'pre-register',sessionId:formData.get('sessionId'),consent:true,sourceSlug:'regina-atelier',utmSource:query.get('utm_source')||'',utmMedium:query.get('utm_medium')||'',utmCampaign:query.get('utm_campaign')||'',utmContent:query.get('utm_content')||'',utmTerm:query.get('utm_term')||'',fbclid:query.get('fbclid')||''});
       const target=new URL(data.lineUrl);if(target.origin!=='https://liff.line.me')throw Error('報名入口尚未就緒，請稍後再試。');
       location.assign(target.href);
     } catch(error) {status.textContent=error.message||'暫時無法報名，請稍後再試。';busy=false;submit.disabled=false;}
