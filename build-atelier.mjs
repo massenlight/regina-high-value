@@ -33,7 +33,7 @@ html = html.replace('讓專業被看見，<br>也讓未來<br><span>多一點選
 html = html.replace('跟著 Regina，用兩天為下一階段的成長打下基礎。<br>從理解客戶、建立信任開始，重新整理你的銷售方式。', '改變不必從推翻自己開始。先重新檢視一次對話、一份提案、一段客戶關係，找到值得調整的地方。<br>用兩天，為接下來的每一步，建立更清楚的方法。');
 const enrollmentCard = await readFile(path.join(root, 'webinar-form.html'), 'utf8');
 html = html.replace(/<article class="enroll-card">.*?<\/article>/s, enrollmentCard.trim());
-html = html.replace('</body>', '<script src="webinar-preview.js" defer></script></body>');
+html = html.replace('</body>', '<script src="regina-pixel.js" defer></script><script src="webinar-preview.js" defer></script></body>');
 // Portrait-first edition: remove the superseded copy panel, including its CTAs/facts.
 html = html.replace(/<div class="hero-copy">[\s\S]*?<\/section>/, '</section>');
 html = html.replace('class="hero hero-parallax"', 'class="hero hero-parallax portrait-first"');
@@ -47,8 +47,8 @@ html = html.replace('<span>讓專業被看見</span>', '<span>提高成交品質
 html = html.replace('<span>拿回人生選擇權</span>', '<span>累積收入成長</span>');
 html = html.replace(/<span aria-hidden="true">↗<\/span>/g, '').replace(/查看課程(?:\s*↗)?/g, '報名免費講座');
 html = html.replaceAll('線上說明會', '免費講座').replaceAll('說明會', '免費講座');
-for(const asset of ['webinar-preview.js','atelier-refinements.css']){const digest=createHash('sha256').update(await readFile(path.join(root,asset))).digest('hex').slice(0,12);html=html.replaceAll(asset+'"',asset+'?v='+digest+'"');}
+for(const asset of ['regina-pixel.js','webinar-preview.js','atelier-refinements.css']){const digest=createHash('sha256').update(await readFile(path.join(root,asset))).digest('hex').slice(0,12);html=html.replaceAll(asset+'"',asset+'?v='+digest+'"');}
 await writeFile(path.join(output, 'index.html'), html);
 await writeFile(path.join(output,'_headers'),'/*\n  Cache-Control: no-cache\n');
-for (const name of ['atelier.css', 'atelier.js', 'atelier-results.js', 'photo-safe.css', 'atelier-refinements.css', 'webinar-preview.js']) await cp(path.join(root, name), path.join(output, name));
+for (const name of ['atelier.css', 'atelier.js', 'atelier-results.js', 'photo-safe.css', 'atelier-refinements.css', 'regina-pixel.js', 'webinar-preview.js']) await cp(path.join(root, name), path.join(output, name));
 console.log(output);
