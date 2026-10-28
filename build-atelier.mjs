@@ -1,6 +1,7 @@
 import { readFile, writeFile, cp, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import {createHash} from 'node:crypto';
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const output = path.resolve(root, process.env.REGINA_OUTPUT_DIR || '../../04_交付與輸出/regina-atelier');
@@ -46,6 +47,8 @@ html = html.replace('<span>讓專業被看見</span>', '<span>提高成交品質
 html = html.replace('<span>拿回人生選擇權</span>', '<span>累積收入成長</span>');
 html = html.replace(/<span aria-hidden="true">↗<\/span>/g, '').replace(/查看課程(?:\s*↗)?/g, '報名免費講座');
 html = html.replaceAll('線上說明會', '免費講座').replaceAll('說明會', '免費講座');
+for(const asset of ['webinar-preview.js','atelier-refinements.css']){const digest=createHash('sha256').update(await readFile(path.join(root,asset))).digest('hex').slice(0,12);html=html.replaceAll(asset+'"',asset+'?v='+digest+'"');}
 await writeFile(path.join(output, 'index.html'), html);
+await writeFile(path.join(output,'_headers'),'/*\n  Cache-Control: no-cache\n');
 for (const name of ['atelier.css', 'atelier.js', 'atelier-results.js', 'photo-safe.css', 'atelier-refinements.css', 'webinar-preview.js']) await cp(path.join(root, name), path.join(output, name));
 console.log(output);
