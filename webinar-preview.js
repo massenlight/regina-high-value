@@ -30,7 +30,9 @@
       const query=new URLSearchParams(location.search),formData=new FormData(form);
       const data=await request({action:'pre-register',sessionId:formData.get('sessionId'),consent:true,sourceSlug:'regina-atelier',utmSource:query.get('utm_source')||'',utmMedium:query.get('utm_medium')||'',utmCampaign:query.get('utm_campaign')||'',utmContent:query.get('utm_content')||'',utmTerm:query.get('utm_term')||'',fbclid:query.get('fbclid')||''});
       const target=new URL(data.lineUrl);if(target.origin!=='https://liff.line.me')throw Error('報名入口尚未就緒，請稍後再試。');
-      location.assign(target.href);
+      try{window.reginaTrackSubmit?.();}catch{}
+      // Give the queued browser event a brief chance to leave before LINE navigation.
+      setTimeout(()=>location.assign(target.href),250);
     } catch(error) {status.textContent=error.message||'暫時無法報名，請稍後再試。';busy=false;submit.disabled=false;}
   });
 })();
