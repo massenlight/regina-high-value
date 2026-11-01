@@ -1,16 +1,16 @@
 # 高價值客戶變現業務力｜Regina
 
-## 目前網站與管理（2026-10-27）
+## 目前網站與管理（2026-11-01）
 
 - 目前 Cloudflare 版：https://regina-atelier.massenlighten-company.workers.dev/
-- 原 GitHub Pages 版：https://massenlight.github.io/regina-high-value/
+- GitHub Pages 正式版（Atelier）：https://massenlight.github.io/regina-high-value/
 - Cloudflare 管理：Eric 可管理的 Bless 帳戶 → Workers & Pages → `regina-atelier`。
 - `dist/` 是原 GitHub Pages 版本；根目錄 `atelier*.css/js`、`photo-safe.css`、`webinar-form.html`、`webinar-preview.js` 與 `build-atelier.mjs` 是 Cloudflare 版本的來源。
 - 執行 `node build-atelier.mjs` 產生 `../../04_交付與輸出/regina-atelier/`。獨立 checkout 也使用此相對位置；請在可寫的專案資料夾執行。`python3 check-preservation.py` 檢查原文、圖片與連結保留。
 - `build-editorial.mjs` 是另一個敘事預覽版本，不是目前選定的主版本。
 - 2026-10-28：目前主版本改為講師照片開場，課程形式為一天實體課程＋完整線上課程；舊版首屏已移除。歷史學員心得原文保留。
 - 可用 `REGINA_OUTPUT_DIR=.build/atelier node build-atelier.mjs` 在 repo 內乾淨建置；上傳 manifest／assets 時使用相同 `REGINA_OUTPUT_DIR`。舊 `check-preservation.py` 對應9月舊版文案，不適用新版首屏刪除；新版以瀏覽器檢查內容、圖片、手機排版與表單流程。
-- 此版本報名表是介面預覽，實際報名／LINE 串接需另行驗證。
+- 報名表從既有 recruitment API 取得場次，並導向 LINE 完成報名；跨網域部署須驗證場次載入，完整 LINE 登入與實際報名需另行驗證。
 
 ## 後續編輯規則
 
@@ -19,9 +19,9 @@
 3. 正式部署僅使用已合併的 `main`，部署訊息附完整 commit 編號。
 4. 不直接上傳未進 Git 的檔案到 Cloudflare 正式站。緊急修正也須當天補入 repo 並合併。
 
-目前 GitHub Actions 僅部署 `dist/` 至 GitHub Pages；合併本次來源不會自動更新 Cloudflare。Cloudflare 部署前須確認目標為 `regina-atelier`，並核對建置輸出與網站讀回。
+GitHub Actions 使用 Node.js 22 執行 `REGINA_OUTPUT_DIR=.build/atelier node build-atelier.mjs`，將 `.build/atelier/` 發布至 GitHub Pages，以 Atelier 新版取代原版。`dist/` 保留為建置輸入。此流程不會更新 Cloudflare；Cloudflare 部署前仍須確認目標為 `regina-atelier`，並核對建置輸出與網站讀回。
 
-靜態一頁式網站，完整 HTML、CSS、JavaScript 與圖片位於 `dist/`，不需安裝套件或建置。
+靜態一頁式網站。Atelier 建置以 `dist/` 為基礎，套用根目錄的新版樣式、互動與報名表；僅需 Node.js，不需安裝套件。
 
 ## GitHub Pages
 
@@ -33,6 +33,6 @@
 
 ## 本機預覽
 
-執行 `python3 -m http.server 8000 --directory dist`，再開啟 http://localhost:8000。
+先執行 `REGINA_OUTPUT_DIR=.build/atelier node build-atelier.mjs`，再執行 `python3 -m http.server 8000 --directory .build/atelier`，開啟 http://localhost:8000。
 
 此匯出不包含原 Sites 專案的 Git 歷史、設定或任何部署憑證。
