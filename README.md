@@ -1,5 +1,12 @@
 # 高價值客戶變現業務力｜Regina
 
+## 新版講座頁（2026-11-02）
+
+正式部署入口為 `node build-sales-mindset.mjs`，預設輸出 `.build/atelier/`，也支援 `REGINA_OUTPUT_DIR`。GitHub Pages 使用相同入口。
+
+`sales-mindset/` 匯入「網站部署與原始碼覆蓋」對話的 Sites 第 7 版（project `appgprj_6ae74fc962988191b84f3881da0c7b83`，source commit `90fce9a`）。包含原作品的圖片、三支學員影片、心得與講座報名。僅將分享圖片網址改為正式 Cloudflare 網址，以及將報名備援連結改為 `registration/index.html#enroll`。原 Atelier 建置保留在 `registration/`，避免 GitHub Pages 更新後備援連結回到同一頁。
+
+Cloudflare 目標仍為 `regina-atelier`，正式部署須使用合併後的 main 並附完整 commit。GitHub Actions 僅更新 Pages，不能代表 Cloudflare 已更新。表單實際完成報名與 LINE 登入需另外驗證。
 ## 目前網站與管理（2026-11-01）
 
 - 目前 Cloudflare 版：https://regina-atelier.massenlighten-company.workers.dev/

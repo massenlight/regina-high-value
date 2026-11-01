@@ -24,7 +24,7 @@ jobs:
       - name: Build Atelier website
         env:
           REGINA_OUTPUT_DIR: .build/atelier
-        run: node build-atelier.mjs
+        run: node build-sales-mindset.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
