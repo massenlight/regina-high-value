@@ -18,10 +18,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Build Atelier website
+        env:
+          REGINA_OUTPUT_DIR: .build/atelier
+        run: node build-atelier.mjs
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: dist
+          path: .build/atelier
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
