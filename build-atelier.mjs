@@ -33,7 +33,7 @@ html = html.replace('讓專業被看見，<br>也讓未來<br><span>多一點選
 html = html.replace('跟著 Regina，用兩天為下一階段的成長打下基礎。<br>從理解客戶、建立信任開始，重新整理你的銷售方式。', '改變不必從推翻自己開始。先重新檢視一次對話、一份提案、一段客戶關係，找到值得調整的地方。<br>用兩天，為接下來的每一步，建立更清楚的方法。');
 const enrollmentCard = await readFile(path.join(root, 'webinar-form.html'), 'utf8');
 html = html.replace(/<article class="enroll-card">.*?<\/article>/s, enrollmentCard.trim());
-html = html.replace('</body>', '<script src="regina-pixel.js" defer></script><script src="webinar-preview.js" defer></script></body>');
+html = html.replace('</body>', (html.includes('regina-pixel.js')?'':'<script src="regina-pixel.js" defer></script>')+'<script src="webinar-preview.js" defer></script></body>');
 // Portrait-first edition: remove the superseded copy panel, including its CTAs/facts.
 html = html.replace(/<div class="hero-copy">[\s\S]*?<\/section>/, '</section>');
 html = html.replace('class="hero hero-parallax"', 'class="hero hero-parallax portrait-first"');
