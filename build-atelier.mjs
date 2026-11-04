@@ -12,14 +12,14 @@ const title = html.match(/<h1 class="scene-title">.*?<\/h1>/s)[0];
 html = html.replace(title, '').replace('<div class="hero-copy">', '<div class="hero-copy">' + title);
 // Preserve the original auditorium/speaker composition as an interlude.
 const scene = html.match(/<div class="hero-scene">.*?<div class="hero-shade" aria-hidden="true"><\/div>/s)[0];
-html = html.replace(scene, '<div class="atelier-halo" aria-hidden="true"></div><div class="atelier-portrait"><div class="portrait-course"><span>REGINA’S MASTERCLASS</span><h2>高價值客戶<br><strong>變現業務力</strong></h2><p>高若家 Regina</p></div><img src="assets/regina-portrait.png" alt="高若家 Regina" width="1440" height="1440" fetchpriority="high"></div>');
+html = html.replace(scene, '<div class="atelier-halo" aria-hidden="true"></div><div class="atelier-portrait"><div class="portrait-course"><span>REGINA’S MASTERCLASS</span><h2>高價值客戶<br><strong>成交攻略</strong></h2><p>高若家 Regina</p></div><img src="assets/regina-portrait.png" alt="高若家 Regina" width="1440" height="1440" fetchpriority="high"></div>');
 html = html.replace('<section class="transformation"', '<div class="atelier-stage" aria-label="講師舞台視覺">' + scene + '</div><section class="transformation"');
 html = html.replace('</head>', '<meta name="robots" content="noindex,nofollow"><link rel="stylesheet" href="atelier.css"><link rel="stylesheet" href="photo-safe.css"><link rel="stylesheet" href="atelier-refinements.css"></head>');
 html = html.replace('<body>', '<body class="atelier">');
 html = html.replace('<script src="parallax.js" defer></script>', '<script src="atelier.js" defer></script>');
 // Restore the original rolling-number choreography with a taller glyph window.
 html = html.replace('<script src="results.js" defer></script>', '<script src="atelier-results.js" defer></script>');
-html = html.replace(title, '<p class="course-name">高價值客戶 · 變現業務力</p><h1 class="scene-title urgency-title"><span>一年後，還要繼續</span><span>靠降價成交嗎？</span></h1>');
+html = html.replace(title, '<p class="course-name">高價值客戶 · 成交攻略</p><h1 class="scene-title urgency-title"><span>一年後，還要繼續</span><span>靠降價成交嗎？</span></h1>');
 html = html.replace('讓你的專業，<br>成為客戶選擇你的理由。', '別把下一年的努力，<br>再花在同樣的比價與追單。');
 html = html.replace('從追著客戶跑，到成為值得信任的高價值業務。<br class="desktop">重新定位自己，用理解與信任，開啟長期成交的可能。', '今天沒說清楚的價值，可能就是明天流失的客戶。<br class="desktop">跟著 Regina，從理解需求、建立信任開始，改變只剩價格能談的局面。');
 html = html.replace('明明已經很努力，<br>為什麼還是這麼被動？', '再忙一年，<br>就能擺脫現在的困局嗎？');
@@ -37,7 +37,7 @@ html = html.replace('</body>', (html.includes('regina-pixel.js')?'':'<script src
 // Portrait-first edition: remove the superseded copy panel, including its CTAs/facts.
 html = html.replace(/<div class="hero-copy">[\s\S]*?<\/section>/, '</section>');
 html = html.replace('class="hero hero-parallax"', 'class="hero hero-parallax portrait-first"');
-html = html.replace('<h2>高價值客戶<br><strong>變現業務力</strong></h2>', '<h1>高價值客戶<br><strong>變現業務力</strong></h1>');
+html = html.replace('<h2>高價值客戶<br><strong>成交攻略</strong></h2>', '<h1>高價值客戶<br><strong>成交攻略</strong></h1>');
 html = html.replaceAll('兩天實體課程', '一天實體課程＋完整線上課程');
 html = html.replaceAll('用兩天，為接下來的每一步，建立更清楚的方法。', '一天實體課程集中演練，搭配完整線上課程反覆學習，把成交方法帶回每一次客戶對話。');
 html = html.replace('再忙一年，<br>就能擺脫現在的困局嗎？', '收入要再往上，<br>先把成交方法做對。');
