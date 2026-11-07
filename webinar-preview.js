@@ -30,7 +30,7 @@
       const query=new URLSearchParams(location.search),formData=new FormData(form);
       const data=await request({action:'pre-register',sessionId:formData.get('sessionId'),consent:true,sourceSlug:'regina-atelier',utmSource:query.get('utm_source')||'',utmMedium:query.get('utm_medium')||'',utmCampaign:query.get('utm_campaign')||'',utmContent:query.get('utm_content')||'',utmTerm:query.get('utm_term')||'',fbclid:query.get('fbclid')||''});
       // IG／FB 內建瀏覽器打不開 https 的 LIFF 連結（會停在 LINE 的帳密登入頁）；後端在這類瀏覽器會另給 nativeLineUrl
-      // （iOS 為 line://app/…、Android 為 intent://…），其他瀏覽器沒有這個欄位，照舊走 https 的 liff.line.me（2026-11-07，同世豐落地頁）。
+      // （iOS 為 line://app/…、Android 為 intent://…），其他瀏覽器這個欄位等於 lineUrl，照舊走 https 的 liff.line.me（2026-11-07，同世豐落地頁）。
       const webUrl=String(data.lineUrl||''),href=typeof data.nativeLineUrl==='string'&&data.nativeLineUrl?data.nativeLineUrl:webUrl;
       if(!/^https:\/\/liff\.line\.me\//.test(webUrl)||!/^(https:\/\/liff\.line\.me\/|line:\/\/app\/|intent:\/\/app\/)/.test(href))throw Error('報名入口尚未就緒，請稍後再試。');
       try{window.reginaTrackSubmit?.();}catch{}
